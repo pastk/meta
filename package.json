@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "metaserver",
+  "version": "1.0.0",
+  "description": "Returns a list of actual servers to download data",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js",
+    "test": "eslint src/**/*.ts && tsc --noEmit",
+    "format": "prettier --write 'src/**/*.{ts,tsx,json}'"
+  },
+  "author": "Alexander Borsuk <me@alex.bio>",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^2.2.2",
+    "@cloudflare/wrangler": "^1.16.1",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "esbuild": "^0.12.1",
+    "eslint": "^7.26.0",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
+  }
+}

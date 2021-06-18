@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "outDir": "./dist",
+    "module": "ES6",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "lib": [
+      "ESNext",
+      "webworker"
+    ],
+    "alwaysStrict": true,
+    "strict": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "types": [
+      "@cloudflare/workers-types"
+    ]
+  },
+  "include": [
+    "src/",
+  ],
+  "exclude": [
+    "node_modules/",
+    "dist/",
+  ]
+}

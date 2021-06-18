@@ -1,0 +1,18 @@
+env:
+  es2020: true
+  worker: true
+extends: ["plugin:@typescript-eslint/recommended"]
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: 2020
+  ecmaFeatures:
+    impliedStrict: true
+  sourceType: module
+root: true
+rules:
+  indent: [error, 2, { SwitchCase: 1 }]
+  semi: [error, always]
+  quotes: [error, single, avoid-escape]
+  no-trailing-spaces: [error]
+  no-unused-vars: [error, { argsIgnorePattern: ^_ }]
+  prefer-const: [error, { destructuring: all }]
