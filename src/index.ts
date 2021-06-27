@@ -1,6 +1,6 @@
 export {};
 
-const SERVERS = ['https://cdn-eu1.organicmaps.app/', 'https://cdn-eu2.organicmaps.app/', 'https://cdn-ca1.organicmaps.app/', 'https://cdn.organicmaps.app/'];
+const SERVERS = ['https://cdn-eu1.organicmaps.app/', 'https://cdn-eu2.organicmaps.app/', 'https://cdn.organicmaps.app/'];
 
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request).catch((err) => new Response(err.stack, { status: 500 })));
