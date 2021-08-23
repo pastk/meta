@@ -22,6 +22,8 @@ async function handleRequest(request: Request) {
           servers = [
             'https://cdn-pl1.organicmaps.app/', // OVH PL, unmetered
             'https://cdn-fi1.organicmaps.app/', // Hetzner Cloud FI, 20TB
+            'https://cdn-uk1.organicmaps.app/', // Mythic Beasts, 200TB
+            'https://cdn-nl1.organicmaps.app/', // Mythic Beasts, 200TB
             'https://cdn-eu2.organicmaps.app/', // Hetzner Cloud DE, 20TB
             'https://cdn.organicmaps.app/', // Hetzner BareMetal DE unmetered
           ];
