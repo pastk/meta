@@ -15,7 +15,9 @@ async function handleRequest(request: Request) {
       switch (request.cf?.continent) {
         case 'NA': // North America
           servers = [
-            'https://cdn4.organicmaps.app/', // BackBlaze US-West + CF, unmetered
+            'https://cdn-us1.organicmaps.app/', // BackBlaze US-West + CF, unmetered
+            'https://cdn-uk1.organicmaps.app/', // Mythic Beasts, 200TB
+            'https://cdn-nl1.organicmaps.app/', // Mythic Beasts, 200TB
             'https://cdn.organicmaps.app/', // Hetzner BareMetal DE unmetered
           ];
           break;
