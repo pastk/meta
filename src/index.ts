@@ -8,7 +8,9 @@ async function handleRequest(request: Request) {
   const { pathname } = new URL(request.url);
 
   switch (pathname) {
-    case '/servers': {
+    case '/maps':       // Public for map files.
+    case '/resources':  // Public for resources.
+    case '/servers': {  // Private for map files.
       let servers;
       switch (request.cf?.continent) {
         case 'NA': // North America
