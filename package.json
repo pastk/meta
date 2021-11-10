@@ -12,13 +12,13 @@
   "author": "Alexander Borsuk <me@alex.bio>",
   "license": "MIT",
   "devDependencies": {
-    "@cloudflare/workers-types": "^2.2.2",
-    "@cloudflare/wrangler": "^1.16.1",
-    "@typescript-eslint/eslint-plugin": "^4.24.0",
-    "@typescript-eslint/parser": "^4.24.0",
-    "esbuild": "^0.12.1",
-    "eslint": "^7.26.0",
-    "prettier": "^2.3.0",
-    "typescript": "^4.2.4"
+    "@cloudflare/workers-types": "^3.1.1",
+    "@cloudflare/wrangler": "^1.19.5",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "esbuild": "^0.13.13",
+    "eslint": "^8.2.0",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
   }
 }
