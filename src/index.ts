@@ -5,7 +5,6 @@ const SERVER = {
   uk1: 'https://cdn-uk1.organicmaps.app/',       // Mythic Beasts VPS (London, UK) 200TB/mo.
   nl1: 'https://cdn-nl1.organicmaps.app/',       // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
   planet: 'https://cdn.organicmaps.app/',        // Hetzner BareMetal (Falkenstein, Germany) unmetered
-  pl1: 'https://cdn-pl1.organicmaps.app/',       // OVH VPS (Warsaw, Poland) unmetered
   fi1: 'https://cdn-fi1.organicmaps.app/',       // Hetzner Cloud (Helsinki, Finland), 20TB/mo
   de1: 'https://cdn-eu2.organicmaps.app/',       // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
 };
@@ -57,7 +56,7 @@ async function handleRequest(request: Request) {
           servers = [SERVER.backblaze, SERVER.uk1, SERVER.nl1, SERVER.planet];
           break;
         default: // Every other continent + Tor networks.
-          servers = [SERVER.planet, SERVER.pl1, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1];
+          servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1];
       }
       return new Response(JSON.stringify(servers), {
         headers: { 'Content-Type': 'application/json' },
