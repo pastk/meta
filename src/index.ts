@@ -30,8 +30,8 @@ function extractDataVersion(request: Request): Number {
 
 // TODO: Implement automated version checks from this metaserver script.
 // It should check by cron if actual files are really available on all servers.
-const LAST_AVAILABLE_VERSION = 210825;
-const BEFORE_LAST_AVAILABLE_VERSION = 211002;
+const LAST_AVAILABLE_VERSION = 211002;
+const BEFORE_LAST_AVAILABLE_VERSION = 211022;
 
 async function handleRequest(request: Request) {
   const { pathname } = new URL(request.url);
