@@ -1,5 +1,10 @@
 export { };
 
+// TODO: Implement automated version checks from this metaserver script.
+// It should check by cron if actual files are really available on all servers.
+const LAST_AVAILABLE_VERSION = 211122;
+const BEFORE_LAST_AVAILABLE_VERSION = 220103;
+
 const SERVER = {
   backblaze: 'https://cdn-us1.organicmaps.app/', // BackBlaze + CloudFlare (US-West) unmetered.
   uk1: 'https://cdn-uk1.organicmaps.app/',       // Mythic Beasts VPS (London, UK) 200TB/mo.
@@ -28,11 +33,6 @@ function extractDataVersion(request: Request): Number {
   }
   return 0;
 }
-
-// TODO: Implement automated version checks from this metaserver script.
-// It should check by cron if actual files are really available on all servers.
-const LAST_AVAILABLE_VERSION = 211022;
-const BEFORE_LAST_AVAILABLE_VERSION = 211122;
 
 async function handleRequest(request: Request) {
   const { pathname } = new URL(request.url);
