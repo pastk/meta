@@ -8,7 +8,6 @@ const SERVER = {
   fi1: 'https://cdn-fi1.organicmaps.app/',       // Hetzner Cloud (Helsinki, Finland), 20TB/mo
   de1: 'https://cdn-eu2.organicmaps.app/',       // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
   us2: 'https://cdn-us2.organicmaps.app/',       // Hetzner Cloud (Asburn, US East), 20TB/mo
-  ru1: 'https://cdn-ru1.organicmaps.app/',       // Sergei Krashevich (SVK Telecom) (Moscow, Russia), unmetered
 };
 
 // Main entry point.
@@ -55,10 +54,10 @@ async function handleRequest(request: Request) {
         case 'NA': // North America
         case 'SA': // South America
         case 'OC': // Oceania
-          servers = [SERVER.backblaze, SERVER.us2, SERVER.uk1, SERVER.nl1, SERVER.ru1, SERVER.planet];
+          servers = [SERVER.backblaze, SERVER.us2, SERVER.uk1, SERVER.nl1, SERVER.planet];
           break;
         default: // Every other continent + Tor networks.
-          servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.ru1, SERVER.de1];
+          servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1];
       }
       return new Response(JSON.stringify(servers), {
         headers: { 'Content-Type': 'application/json' },
