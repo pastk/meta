@@ -2,8 +2,8 @@ export { };
 
 // TODO: Implement automated version checks from this metaserver script.
 // It should check by cron if actual files are really available on all servers.
-const LAST_AVAILABLE_VERSION = 211122;
-const BEFORE_LAST_AVAILABLE_VERSION = 220103;
+const LAST_AVAILABLE_VERSION = 220103;
+const BEFORE_LAST_AVAILABLE_VERSION = 220204;
 
 const SERVER = {
   backblaze: 'https://cdn-us1.organicmaps.app/', // BackBlaze + CloudFlare (US-West) unmetered.
