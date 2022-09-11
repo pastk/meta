@@ -9,8 +9,8 @@
     "test": "eslint src/**/*.ts && tsc --noEmit",
     "lint": "eslint --fix --ext .tsx,.ts src/",
     "lint:ci": "eslint --ext .tsx,.ts src/ --max-warnings 0",
-    "format": "prettier --write 'src/**/*.{ts,tsx}'",
-    "format:ci": "prettier --check 'src/**/*.{ts,tsx}'"
+    "format": "prettier --write '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'",
+    "format:ci": "prettier --check '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'"
   },
   "author": "Alexander Borsuk <me@alex.bio>",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "esbuild": "^0.15.7",
     "eslint": "^8.9.0",
     "prettier": "^2.5.1",
+    "prettier-plugin-toml": "^0.3.1",
     "typescript": "^4.5.5"
   }
 }

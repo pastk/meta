@@ -5,24 +5,14 @@
     "module": "ES6",
     "moduleResolution": "node",
     "target": "ESNext",
-    "lib": [
-      "ESNext",
-      "webworker"
-    ],
+    "lib": ["ESNext", "webworker"],
     "alwaysStrict": true,
     "strict": true,
     "preserveConstEnums": true,
     "sourceMap": true,
     "esModuleInterop": true,
-    "types": [
-      "@cloudflare/workers-types"
-    ]
+    "types": ["@cloudflare/workers-types"]
   },
-  "include": [
-    "src/",
-  ],
-  "exclude": [
-    "node_modules/",
-    "dist/",
-  ]
+  "include": ["src/"],
+  "exclude": ["node_modules/", "dist/"]
 }

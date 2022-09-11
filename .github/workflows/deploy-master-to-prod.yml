@@ -16,5 +16,4 @@ jobs:
           environment: prod
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-
 # TODO: Add organicmaps deploy.
