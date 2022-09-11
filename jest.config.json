@@ -1,0 +1,19 @@
+{
+  "preset": "ts-jest/presets/default-esm",
+  "transform": {
+    "^.+\\.(t|j)sx?$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.json",
+        "useESM": true
+      }
+    ]
+  },
+  "testRegex": "/test/.*\\.test\\.ts$",
+  "testEnvironment": "miniflare",
+  "testEnvironmentOptions": {
+    "scriptPath": "./src/index.ts",
+    "modules": true
+  },
+  "collectCoverageFrom": ["src/**/*.{ts,tsx}"]
+}

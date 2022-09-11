@@ -1,8 +1,10 @@
 export {};
 
+import { parseDataVersion, parseAppVersion } from './utils';
+
 // TODO: Implement automated version checks from this metaserver script.
 // It should check by cron if actual files are really available on all servers.
-const SERVER = {
+export const SERVER = {
   backblaze: {
     // BackBlaze + CloudFlare (US-West) unmetered.
     url: 'https://cdn-us1.organicmaps.app/',
@@ -43,27 +45,15 @@ const SERVER = {
   },
 };
 
+const DONATE_URL = 'https://donate.organicmaps.app';
+const DONATE_URL_RU = 'https://donate.organicmaps.ru';
+
 // Main entry point.
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request).catch((err) => new Response(err.stack, { status: 500 })));
 });
 
-// Starting from September release, our clients have 'X-OM-DataVersion' header with the value
-// of their current maps data version, for example, "211022" (October 22, 2021).
-// It is lowercased by Cloudflare.
-// Returns 0 if data version is absent or invalid, or a valid integer version.
-function extractDataVersion(request: Request): number {
-  const strDataVersion = request.headers.get('x-om-dataversion');
-  if (strDataVersion) {
-    const dataVersion = parseInt(strDataVersion);
-    if (!Number.isNaN(dataVersion) && dataVersion >= 210000 && dataVersion <= 500000) {
-      return dataVersion;
-    }
-  }
-  return 0;
-}
-
-async function handleRequest(request: Request) {
+export async function handleRequest(request: Request) {
   const { pathname } = new URL(request.url);
 
   switch (pathname) {
@@ -72,10 +62,13 @@ async function handleRequest(request: Request) {
     case '/servers': {
       // Private for map files.
       let servers;
-      const dataVersion = extractDataVersion(request);
-      if (dataVersion == 0) {
+      // Starting from 2021-09, our clients have 'X-OM-DataVersion' header with the value
+      // of their current maps data version, for example, "211022" (October 22, 2021).
+      // It is lowercased by Cloudflare.
+      const dataVersion = parseDataVersion(request.headers.get('x-om-dataversion'));
+      if (dataVersion === null) {
         servers = [SERVER.backblaze];
-      } else
+      } else {
         switch (request.cf?.continent) {
           // See https://developers.cloudflare.com/firewall/cf-firewall-language/fields for a list of all continents.
           case 'NA': // North America
@@ -101,8 +94,56 @@ async function handleRequest(request: Request) {
               }
             }
         }
+      }
+      servers = servers.map((server) => server.url);
 
-      const response = servers.map((server) => server.url);
+      const appVersion = parseAppVersion(request.headers.get('x-om-appversion'));
+      if (!appVersion) {
+        // Old format for <220823
+        return new Response(JSON.stringify(servers), {
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      // New format for >=220823
+      const response: {
+        servers: string[];
+        settings?: {
+          DonateUrl?: string;
+        };
+      } = {
+        servers: servers,
+      };
+
+      // Donates
+      let donatesEnabled = false;
+      if (appVersion.flavor == 'fdroid' || appVersion.flavor == 'web') {
+        donatesEnabled = true;
+      } else if (appVersion.flavor == 'huawei') {
+        donatesEnabled = true;
+      } else if (
+        appVersion.flavor == 'google' &&
+        !(request.cf?.asOrganization || '').toLowerCase().includes('google') &&
+        (request.cf?.country == 'DE' ||
+          request.cf?.country == 'TR' ||
+          request.cf?.country == 'CY' ||
+          request.cf?.country == 'CH')
+      ) {
+        donatesEnabled = true;
+      }
+
+      if (donatesEnabled) {
+        if (request.cf?.country == 'RU') {
+          response.settings = {
+            DonateUrl: DONATE_URL_RU,
+          };
+        } else {
+          response.settings = {
+            DonateUrl: DONATE_URL,
+          };
+        }
+      }
+
       return new Response(JSON.stringify(response), {
         headers: { 'Content-Type': 'application/json' },
       });

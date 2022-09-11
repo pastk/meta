@@ -9,7 +9,7 @@ workers_dev = true
 
 [build]
 upload.format = 'service-worker'
-command = 'npm i --prefer-offline --no-audit && npm run build'
+command = 'npm ci --prefer-offline --no-audit && npm run build'
 
 [vars]
 DEBUG = true

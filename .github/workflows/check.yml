@@ -29,3 +29,6 @@ jobs:
 
       - name: Format
         run: npm run format:ci
+
+      - name: Test
+        run: npm test
