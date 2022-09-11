@@ -7,7 +7,10 @@
   "scripts": {
     "build": "esbuild src/index.ts --bundle --outfile=dist/index.js",
     "test": "eslint src/**/*.ts && tsc --noEmit",
-    "format": "prettier --write 'src/**/*.{ts,tsx,json}'"
+    "lint": "eslint --fix --ext .tsx,.ts src/",
+    "lint:ci": "eslint --ext .tsx,.ts src/ --max-warnings 0",
+    "format": "prettier --write 'src/**/*.{ts,tsx}'",
+    "format:ci": "prettier --check 'src/**/*.{ts,tsx}'"
   },
   "author": "Alexander Borsuk <me@alex.bio>",
   "license": "MIT",
