@@ -45,7 +45,7 @@ export const SERVER = {
   },
 };
 
-const DONATE_URL = 'https://donate.organicmaps.app';
+const DONATE_URL = 'https://organicmaps.app/donate/';
 const DONATE_URL_RU = 'https://donate.organicmaps.ru';
 
 // Main entry point.
