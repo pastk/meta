@@ -10,7 +10,8 @@
     "lint": "eslint --fix --ext .tsx,.ts src/",
     "lint:ci": "eslint --ext .tsx,.ts src/ --max-warnings 0",
     "format": "prettier --write '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'",
-    "format:ci": "prettier --check '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'"
+    "format:ci": "prettier --check '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'",
+    "upgrade": "npx npm-check-updates -u"
   },
   "author": "Alexander Borsuk <me@alex.bio>",
   "license": "MIT",
