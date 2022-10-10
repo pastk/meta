@@ -123,11 +123,7 @@ export async function handleRequest(request: Request) {
         donatesEnabled = true;
       } else if (
         appVersion.flavor == 'google' &&
-        !(request.cf?.asOrganization || '').toLowerCase().includes('google') &&
-        (request.cf?.country == 'DE' ||
-          request.cf?.country == 'TR' ||
-          request.cf?.country == 'CY' ||
-          request.cf?.country == 'CH')
+        !(request.cf?.asOrganization || '').toLowerCase().includes('google')
       ) {
         donatesEnabled = true;
       }
