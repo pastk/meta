@@ -1,14 +1,15 @@
 # Default worker is for dev only.
 # See omaps and organicmaps environments below for production.
 name = 'meta-dev'
-type = 'javascript'
-compatibility_date = '2021-11-11'
+main = 'src/index.ts'
+compatibility_date = '2022-11-21'
 # Organic Maps CF Account ID.
 account_id = '462f578f0939f041e2c24ec99adce458'
 workers_dev = true
+# Whether Wrangler should send usage metrics to Cloudflare for this project.
+send_metrics = false
 
 [build]
-upload.format = 'service-worker'
 command = 'npm ci --prefer-offline --no-audit && npm run build'
 
 [vars]
@@ -17,8 +18,6 @@ DEBUG = true
 [env.prod]
 name = 'meta'
 workers_dev = false
-# omaps.app CF zone ID.
-zone_id = '3fce06554abc3899504e11d928be0ee7'
 # See the full list of handled paths in the code.
 route = 'meta.omaps.app/*'
 
