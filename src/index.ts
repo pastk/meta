@@ -10,43 +10,45 @@ export const SERVER = {
     url: 'https://cdn-us1.organicmaps.app/',
     dataVersions: [
       210529, 210703, 210729, 210825, 211002, 211022, 211122, 220103, 220204, 220314, 220415, 220515, 220613, 220718,
-      220816, 220912,
+      220816, 220912, 221029,
     ],
   },
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [220718, 220816, 220912],
+    dataVersions: [220816, 220912, 221029],
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [220718, 220816, 220912],
+    dataVersions: [220816, 220912, 221029],
   },
   planet: {
     // Hetzner BareMetal (Falkenstein, Germany) unmetered
     url: 'https://cdn.organicmaps.app/',
-    dataVersions: [220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912],
+    dataVersions: [
+      220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221019 /* beta only */, 221029,
+    ],
   },
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
-    dataVersions: [220816, 220912],
+    dataVersions: [220912, 221029],
   },
   de1: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-eu2.organicmaps.app/',
-    dataVersions: [220816, 220912],
+    dataVersions: [220912, 221029],
   },
   us2: {
     // Hetzner Cloud (Asburn, US East), 20TB/mo
     url: 'https://cdn-us2.organicmaps.app/',
-    dataVersions: [220816, 220912],
+    dataVersions: [220912, 221029],
   },
 };
 
 const DONATE_URL = 'https://organicmaps.app/donate/';
-const DONATE_URL_RU = 'https://donate.organicmaps.ru';
+const DONATE_URL_RU = 'https://organicmaps.app/ru/donate/';
 
 // Main entry point.
 addEventListener('fetch', (event) => {
@@ -67,6 +69,7 @@ export async function handleRequest(request: Request) {
       // It is lowercased by Cloudflare.
       const dataVersion = parseDataVersion(request.headers.get('x-om-dataversion'));
       if (dataVersion === null) {
+        // Older clients download from the archive.
         servers = [SERVER.backblaze];
       } else {
         switch (request.cf?.continent) {
@@ -77,26 +80,25 @@ export async function handleRequest(request: Request) {
             servers = [SERVER.backblaze, SERVER.us2, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
               server.dataVersions.includes(dataVersion),
             );
-            if (servers.length == 0) {
-              servers = [SERVER.planet];
-            }
             break;
           default:
             // Every other continent + Tor networks.
             servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1].filter((server) =>
               server.dataVersions.includes(dataVersion),
             );
-            if (servers.length == 0) {
-              if (SERVER.backblaze.dataVersions.includes(dataVersion)) {
-                servers = [SERVER.backblaze];
-              } else {
-                servers = [SERVER.planet];
-              }
+            // Only fallback to the archive in the US if nothing was found closer.
+            if (servers.length == 0 && SERVER.backblaze.dataVersions.includes(dataVersion)) {
+              servers = [SERVER.backblaze];
             }
         }
       }
+      // Fallback to the planet with freshly generated/beta data.
+      if (servers.length == 0) {
+        servers = [SERVER.planet];
+      }
       servers = servers.map((server) => server.url);
 
+      // Header "X-OM-AppVersion: 2022.09.22-3-Google" (lowercased by CF) is supported from August 23, 2022.
       const appVersion = parseAppVersion(request.headers.get('x-om-appversion'));
       if (!appVersion) {
         // Old format for <220823
@@ -115,17 +117,11 @@ export async function handleRequest(request: Request) {
         servers: servers,
       };
 
-      // Donates
-      let donatesEnabled = false;
-      if (appVersion.flavor == 'fdroid' || appVersion.flavor == 'web') {
-        donatesEnabled = true;
-      } else if (appVersion.flavor == 'huawei') {
-        donatesEnabled = true;
-      } else if (
-        appVersion.flavor == 'google' &&
-        !(request.cf?.asOrganization || '').toLowerCase().includes('google')
-      ) {
-        donatesEnabled = true;
+      let donatesEnabled = true;
+      if (appVersion.flavor == 'google') {
+        // Disable donates for Google reviewers.
+        if ((request.cf?.asOrganization || '').toLowerCase().includes('google') || appVersion.code == 221102)
+          donatesEnabled = false;
       }
 
       if (donatesEnabled) {
