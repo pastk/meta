@@ -117,11 +117,15 @@ export async function handleRequest(request: Request) {
         servers: servers,
       };
 
+      // Disable donates for Google reviewers for all google app versions AFTER this one.
+      const lastApprovedAndReleasedGoogleAppVersionCode = 221102;
       let donatesEnabled = true;
-      if (appVersion.flavor == 'google') {
-        // Disable donates for Google reviewers.
-        if ((request.cf?.asOrganization || '').toLowerCase().includes('google') || appVersion.code == 221102)
-          donatesEnabled = false;
+      if (
+        appVersion.flavor === 'google' &&
+        ((request.cf?.asOrganization || '').toLowerCase().includes('google') ||
+          appVersion.code > lastApprovedAndReleasedGoogleAppVersionCode)
+      ) {
+        donatesEnabled = false;
       }
 
       if (donatesEnabled) {
