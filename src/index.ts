@@ -1,6 +1,6 @@
 export {};
 
-import { parseDataVersion, parseAppVersion } from './utils';
+import { parseDataVersion, parseAppVersion } from './versions';
 
 // TODO: Implement automated version checks from this metaserver script.
 // It should check by cron if actual files are really available on all servers.

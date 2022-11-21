@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { parseDataVersion, parseAppVersion } from '../src/utils';
+import { parseDataVersion, parseAppVersion } from '../src/versions';
 
 describe('parseDataVersion', () => {
   test('220801', () => expect(parseDataVersion('220801')).toEqual(220801));
