@@ -72,6 +72,8 @@ export async function handleRequest(request: Request) {
         // Older clients download from the archive.
         servers = [SERVER.backblaze];
       } else {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore workarounds error TS2339: Property 'continent' does not exist on type 'IncomingRequestCfProperties<unknown>'.
         switch (request.cf?.continent) {
           // See https://developers.cloudflare.com/firewall/cf-firewall-language/fields for a list of all continents.
           case 'NA': // North America
@@ -131,6 +133,8 @@ export async function handleRequest(request: Request) {
       if (donatesEnabled) {
         // To count enabled donations.
         console.log('Donates enabled');
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore workarounds error TS2339: Property 'country' does not exist on type 'IncomingRequestCfProperties<unknown>'.
         if (request.cf?.country == 'RU') {
           response.settings = {
             DonateUrl: DONATE_URL_RU,
