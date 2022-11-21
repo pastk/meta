@@ -47,8 +47,9 @@ export const SERVER = {
   },
 };
 
-const DONATE_URL = 'https://organicmaps.app/donate/';
-const DONATE_URL_RU = 'https://organicmaps.app/ru/donate/';
+// Exported for tests.
+export const DONATE_URL = 'https://organicmaps.app/donate/';
+export const DONATE_URL_RU = 'https://organicmaps.app/ru/donate/';
 
 // Main entry point.
 addEventListener('fetch', (event) => {
@@ -119,13 +120,22 @@ export async function handleRequest(request: Request) {
         servers: servers,
       };
 
-      // Disable donates for Google reviewers for all google app versions AFTER this one.
+      // Disable donates for reviewers for all app versions AFTER this one.
       const lastApprovedAndReleasedGoogleAppVersionCode = 221102;
+      const lastApprovedAndReleasediOSAppVersionCode = 221120;
       let donatesEnabled = true;
       if (
         appVersion.flavor === 'google' &&
         ((request.cf?.asOrganization || '').toLowerCase().includes('google') ||
           appVersion.code > lastApprovedAndReleasedGoogleAppVersionCode)
+      ) {
+        donatesEnabled = false;
+      } else if (appVersion.build === undefined) {
+        // Disable donates for older iOS versions without donates menu support.
+        donatesEnabled = false;
+      } else if (
+        (appVersion.flavor === 'ios' && (request.cf?.asOrganization || '').toLowerCase().includes('apple')) ||
+        appVersion.code > lastApprovedAndReleasediOSAppVersionCode
       ) {
         donatesEnabled = false;
       }

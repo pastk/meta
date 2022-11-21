@@ -20,6 +20,10 @@ describe('parseDataVersion', () => {
 
 describe('parseAppVersion', () => {
   const tests: { [key: string]: object | null } = {
+    // Older iOS releases without donate menu
+    '2022.08.01': { code: 220801 },
+    // Newer iOS releases with donate menu
+    '2022.11.25-5-ios': { code: 221125, build: 5, flavor: 'ios' },
     '2022.08.01-1': { code: 220801, build: 1 },
     '2022.08.01-1-Google': { code: 220801, build: 1, flavor: 'google' },
     // -debug is ignored
@@ -32,8 +36,20 @@ describe('parseAppVersion', () => {
     '2022.13.31-1': null,
     '2022.01.00-1': null,
     '2022.01.32-1': null,
+    '22.01.31-1': null,
+    '22.01.31': null,
+    '22.01.31-3-flavor': null,
     '202.01.31-1': null,
+    '202.01.312-1': null,
+    '202.01.312': null,
+    '202.01.31-aa-flavor': null,
+    '202.01.31-5a-flavor': null,
+    '202.01.31-a5-flavor': null,
     '2022..31-11': null,
+    '2022..31-11-flavor': null,
+    '.11.31-11': null,
+    '.11.31-11-flavor': null,
+    '.11..31-11-flavor': null,
     garbage: null,
     '': null,
     null: null,
