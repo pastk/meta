@@ -10,40 +10,43 @@ export const SERVER = {
     url: 'https://cdn-us1.organicmaps.app/',
     dataVersions: [
       210529, 210703, 210729, 210825, 211002, 211022, 211122, 220103, 220204, 220314, 220415, 220515, 220613, 220718,
-      220816, 220912, 221029,
+      220816, 220912, 221029, 221119,
     ],
   },
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [220816, 220912, 221029],
+    dataVersions: [220912, 221029, 221119],
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [220816, 220912, 221029],
+    dataVersions: [220912, 221029, 221119],
   },
   planet: {
     // Hetzner BareMetal (Falkenstein, Germany) unmetered
     url: 'https://cdn.organicmaps.app/',
-    dataVersions: [
-      220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221019 /* beta only */, 221029,
-    ],
+    dataVersions: [220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119],
   },
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
-    dataVersions: [220912, 221029],
+    dataVersions: [221029, 221119],
   },
   de1: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-eu2.organicmaps.app/',
-    dataVersions: [220912, 221029],
+    dataVersions: [221029, 221119],
+  },
+  de2: {
+    // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
+    url: 'https://cdn-de2.organicmaps.app/',
+    dataVersions: [220912, 221029, 221119],
   },
   us2: {
     // Hetzner Cloud (Asburn, US East), 20TB/mo
     url: 'https://cdn-us2.organicmaps.app/',
-    dataVersions: [220912, 221029],
+    dataVersions: [221029, 221119],
   },
 };
 
