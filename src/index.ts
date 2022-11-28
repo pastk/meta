@@ -124,7 +124,7 @@ export async function handleRequest(request: Request) {
       };
 
       // Disable donates for reviewers for all app versions AFTER this one.
-      const lastApprovedAndReleasedGoogleAppVersionCode = 221102;
+      const lastApprovedAndReleasedGoogleAppVersionCode = 221124;
       const lastApprovedAndReleasediOSAppVersionCode = 221120;
       let donatesEnabled = true;
       if (
