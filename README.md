@@ -31,6 +31,8 @@ Use `npx wrangler publish` to open and test deployed worker in browser at https:
 For dev: `npx wrangler tail [--format json]`
 
 For production: `npx wrangler tail --env prod [--format json]`
+or
+`npm run logs`
 
 ## Deployment
 
