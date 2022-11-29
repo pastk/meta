@@ -89,7 +89,7 @@ export async function handleRequest(request: Request) {
             break;
           default:
             // Every other continent + Tor networks.
-            servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1].filter((server) =>
+            servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de2].filter((server) =>
               server.dataVersions.includes(dataVersion),
             );
             // Only fallback to the archive in the US if nothing was found closer.
