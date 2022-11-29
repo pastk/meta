@@ -11,24 +11,25 @@
     "lint:ci": "eslint --ext .tsx,.ts src/ --max-warnings 0",
     "format": "prettier --write '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'",
     "format:ci": "prettier --check '{src,test}/**/*.{ts,tsx}' '*.json' '*.yml' '*.toml' '.github/**/*.yml'",
-    "upgrade": "npx npm-check-updates -u"
+    "upgrade": "npx npm-check-updates -u && npm install"
   },
   "author": "Alexander Borsuk <me@alex.bio>",
   "license": "MIT",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
     "@types/jest": "^29.2.3",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
-    "@typescript-eslint/parser": "^5.43.0",
-    "esbuild": "^0.15.15",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "esbuild": "^0.15.16",
     "eslint": "^8.28.0",
     "jest": "^29.3.1",
     "jest-environment-miniflare": "^2.11.0",
     "miniflare": "^2.11.0",
-    "prettier": "^2.7.1",
+    "npm-check-updates": "^16.4.3",
+    "prettier": "^2.8.0",
     "prettier-plugin-toml": "^0.3.1",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.3",
-    "wrangler": "^2.4.2"
+    "wrangler": "^2.5.0"
   }
 }
