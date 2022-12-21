@@ -141,9 +141,6 @@ export async function handleRequest(request: Request) {
         appVersion.code > lastApprovedAndReleasediOSAppVersionCode
       ) {
         donatesEnabled = false;
-      } else if (appVersion.flavor === 'huawei') {
-        // 2022-12-12: Temporary disable donates for Huawei while the build is on review
-        donatesEnabled = false;
       }
 
       if (donatesEnabled) {
