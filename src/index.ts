@@ -118,6 +118,7 @@ export async function handleRequest(request: Request) {
         servers: string[];
         settings?: {
           DonateUrl?: string;
+          NY?: string;
         };
       } = {
         servers: servers,
@@ -151,12 +152,12 @@ export async function handleRequest(request: Request) {
         if (request.cf?.country == 'RU') {
           response.settings = {
             DonateUrl: DONATE_URL_RU,
-            NY: 'true', // Must be `string` instead of `bool`, otherwise clients will crash
+            NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
           };
         } else {
           response.settings = {
             DonateUrl: DONATE_URL,
-            NY: 'true', // Must be `string` instead of `bool`, otherwise clients will crash
+            NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
           };
         }
       }
