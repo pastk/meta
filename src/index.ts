@@ -10,43 +10,45 @@ export const SERVER = {
     url: 'https://cdn-us1.organicmaps.app/',
     dataVersions: [
       210529, 210703, 210729, 210825, 211002, 211022, 211122, 220103, 220204, 220314, 220415, 220515, 220613, 220718,
-      220816, 220912, 221029, 221119, 221216,
+      220816, 220912, 221029, 221119, 221216, 230121,
     ],
   },
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [221029, 221119, 221216],
+    dataVersions: [221119, 221216, 230121],
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [221029, 221119, 221216],
+    dataVersions: [221119, 221216, 230121],
   },
   planet: {
     // Hetzner BareMetal (Falkenstein, Germany) unmetered
     url: 'https://cdn.organicmaps.app/',
-    dataVersions: [220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119, 221216],
+    dataVersions: [
+      220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119, 221216, 230121,
+    ],
   },
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
-    dataVersions: [221119, 221216],
+    dataVersions: [221216, 230121],
   },
   de1: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-eu2.organicmaps.app/',
-    dataVersions: [221119, 221216],
+    dataVersions: [221216, 230121],
   },
   de2: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-de2.organicmaps.app/',
-    dataVersions: [221029, 221119, 221216],
+    dataVersions: [221119, 221216, 230121],
   },
   us2: {
     // Hetzner Cloud (Asburn, US East), 20TB/mo
     url: 'https://cdn-us2.organicmaps.app/',
-    dataVersions: [221119, 221216],
+    dataVersions: [221216, 230121],
   },
 };
 
@@ -125,8 +127,8 @@ export async function handleRequest(request: Request) {
       };
 
       // Disable donates for reviewers for all app versions AFTER this one.
-      const lastApprovedAndReleasedGoogleAppVersionCode = 221218;
-      const lastApprovedAndReleasediOSAppVersionCode = 221218;
+      const lastApprovedAndReleasedGoogleAppVersionCode = 230125;
+      const lastApprovedAndReleasediOSAppVersionCode = 230125;
       let donatesEnabled = true;
       if (
         appVersion.flavor === 'google' &&
