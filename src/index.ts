@@ -16,12 +16,12 @@ export const SERVER = {
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [230210, 230227],
+    dataVersions: [230121, 230210, 230227],
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [230210, 230227],
+    dataVersions: [230121, 230210, 230227],
   },
   planet: {
     // Hetzner BareMetal (Falkenstein, Germany) unmetered
