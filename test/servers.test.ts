@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { handleRequest, SERVER, DONATE_URL, DONATE_URL_RU } from '../src/index';
+import { getServersList, SERVER, DONATE_URL, DONATE_URL_RU } from '../src/servers';
 
 const URL = 'https://worker/servers';
 const LAST_DATA_VERSION = SERVER.planet.dataVersions[SERVER.planet.dataVersions.length - 1];
@@ -8,7 +8,7 @@ const LAST_DATA_VERSION = SERVER.planet.dataVersions[SERVER.planet.dataVersions.
 describe('X-OM-DataVersion', () => {
   test('no X-OM-DataVersion', async () => {
     const req = new Request(URL);
-    const result = await handleRequest(req);
+    const result = await getServersList(req);
     expect(result.status).toBe(200);
     expect(JSON.parse(await result.text())).toEqual([SERVER.backblaze.url]);
   });
@@ -20,7 +20,7 @@ describe('X-OM-DataVersion', () => {
         'X-OM-DataVersion': String(server.dataVersions[0]),
       },
     });
-    const result = await handleRequest(req);
+    const result = await getServersList(req);
     expect(result.status).toBe(200);
     expect(JSON.parse(await result.text())).toContain(server.url);
   });
@@ -31,7 +31,7 @@ describe('X-OM-DataVersion', () => {
         'X-OM-DataVersion': '210000', // this version doesn't exist on servers
       },
     });
-    const result = await handleRequest(req);
+    const result = await getServersList(req);
     expect(result.status).toBe(200);
     expect(JSON.parse(await result.text())).toEqual([SERVER.planet.url]);
   });
@@ -40,7 +40,7 @@ describe('X-OM-DataVersion', () => {
 describe('X-OM-AppVersion DonateUrl', () => {
   test('Old versions without X-OM-AppVersion and old metaserver JSON format', async () => {
     const req = new Request(URL);
-    const response = await handleRequest(req);
+    const response = await getServersList(req);
     expect(response.status).toBe(200);
     expect(JSON.parse(await response.text())).toEqual([SERVER.backblaze.url]);
   });
@@ -54,7 +54,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
         'X-OM-DataVersion': String(server.dataVersions[0]),
       },
     });
-    const response = await handleRequest(req);
+    const response = await getServersList(req);
     expect(response.status).toBe(200);
     const result = JSON.parse(await response.text());
     expect(result.servers).toBeDefined();
@@ -74,7 +74,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
       //@ts-ignore
       cf: { country: 'RU' },
     });
-    const response = await handleRequest(req);
+    const response = await getServersList(req);
     expect(response.status).toBe(200);
     const result = JSON.parse(await response.text());
     expect(result.settings.DonateUrl).toBeDefined();
@@ -88,7 +88,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
         'X-OM-DataVersion': String(server.dataVersions[0]),
       },
     });
-    const response = await handleRequest(req);
+    const response = await getServersList(req);
     expect(response.status).toBe(200);
     const result = JSON.parse(await response.text());
     expect(result.settings).not.toBeDefined();
@@ -101,7 +101,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
         'X-OM-DataVersion': String(server.dataVersions[0]),
       },
     });
-    const response = await handleRequest(req);
+    const response = await getServersList(req);
     expect(response.status).toBe(200);
     const result = JSON.parse(await response.text());
     expect(result.settings.DonateUrl).toBeDefined();
