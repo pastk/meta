@@ -120,7 +120,7 @@ export async function getServersList(request: Request) {
   let donatesEnabled = true;
   if (
     appVersion.flavor === 'google' &&
-    ((request.cf?.asOrganization || '').toLowerCase().includes('google') ||
+    ((typeof request.cf?.asOrganization === 'string' && request.cf?.asOrganization.toLowerCase().includes('google')) ||
       appVersion.code > lastApprovedAndReleasedGoogleAppVersionCode)
   ) {
     donatesEnabled = false;
@@ -128,8 +128,9 @@ export async function getServersList(request: Request) {
     // Disable donates for older iOS versions without donates menu support.
     donatesEnabled = false;
   } else if (
-    (appVersion.flavor === 'ios' && (request.cf?.asOrganization || '').toLowerCase().includes('apple')) ||
-    appVersion.code > lastApprovedAndReleasediOSAppVersionCode
+    appVersion.flavor === 'ios' &&
+    ((typeof request.cf?.asOrganization === 'string' && request.cf?.asOrganization.toLowerCase().includes('apple')) ||
+      appVersion.code > lastApprovedAndReleasediOSAppVersionCode)
   ) {
     donatesEnabled = false;
   }
