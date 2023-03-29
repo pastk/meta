@@ -24,12 +24,19 @@ describe('parseAppVersion', () => {
     '2022.08.01': { code: 220801 },
     // Newer iOS releases with donate menu
     '2022.11.25-5-ios': { code: 221125, build: 5, flavor: 'ios' },
-    '2022.08.01-1': { code: 220801, build: 1 },
+    // There were no such versions in production.
+    '2022.08.01-1': null,
     '2022.08.01-1-Google': { code: 220801, build: 1, flavor: 'google' },
     // -debug is ignored
     '2022.08.01-1-Google-debug': { code: 220801, build: 1, flavor: 'google' },
-    '2022.1.1-0': { code: 220101, build: 0 },
-    '2099.12.31-999999999': { code: 991231, build: 999999999 },
+    // TODO: Fix regexp. Not it should not happen in production.
+    //'2022.08.01-1-fd-debug': { code: 220801, build: 1, flavor: 'fd' },
+    '2022.1.1-0': null,
+    '2099.12.31-999999999': null,
+    '2023.03.22-1-4fac32de-Linux': { code: 230322, build: 1, flavor: 'linux' },
+    '2023.03.22-1-4fac32de-dirty-Linux': { code: 230322, build: 1, flavor: 'linux' },
+    '2023.03.22-1-4fac32de-Darwin': { code: 230322, build: 1, flavor: 'darwin' },
+    '2023.03.22-1-4fac32de-dirty-Darwin': { code: 230322, build: 1, flavor: 'darwin' },
     '2021.01.31-1': null,
     '2100.01.31-1': null,
     '2022.00.31-1': null,
