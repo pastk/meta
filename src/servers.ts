@@ -136,8 +136,6 @@ export async function getServersList(request: Request) {
   }
 
   if (donatesEnabled) {
-    // To count enabled donations.
-    console.log('Donates enabled');
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore workarounds error TS2339: Property 'country' does not exist on type 'IncomingRequestCfProperties<unknown>'.
     if (request.cf?.country == 'RU') {
