@@ -115,8 +115,8 @@ export async function getServersList(request: Request) {
   };
 
   // Disable donates for reviewers for all app versions AFTER this one.
-  const lastApprovedAndReleasedGoogleAppVersionCode = 230305;
-  const lastApprovedAndReleasediOSAppVersionCode = 230302;
+  const lastApprovedAndReleasedGoogleAppVersionCode = 230402;
+  const lastApprovedAndReleasediOSAppVersionCode = 230402;
   let donatesEnabled = true;
   if (
     appVersion.flavor === 'google' &&
