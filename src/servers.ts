@@ -29,6 +29,13 @@ export const SERVER = {
       230227, 230329, 230503,
     ],
   },
+  beta: {
+    // Alias of the planet above that is proxied via CF and with enabled /maps/ *.mwm caching,
+    // to speed-up downloads for beta testers.
+    url: 'https://cdn-beta.organicmaps.app/',
+    // Can have any non-publicly available maps data version.
+    dataVersions: [],
+  },
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
@@ -90,7 +97,7 @@ export async function getServersList(request: Request) {
   }
   // Fallback to the planet with freshly generated/beta data.
   if (servers.length == 0) {
-    servers = [SERVER.planet];
+    servers = [SERVER.beta, SERVER.planet];
   }
   servers = servers.map((server) => server.url);
 

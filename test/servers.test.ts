@@ -33,7 +33,7 @@ describe('X-OM-DataVersion', () => {
     });
     const result = await getServersList(req);
     expect(result.status).toBe(200);
-    expect(JSON.parse(await result.text())).toEqual([SERVER.planet.url]);
+    expect(JSON.parse(await result.text())).toEqual([SERVER.beta.url, SERVER.planet.url]);
   });
 });
 
