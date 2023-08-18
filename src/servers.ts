@@ -8,25 +8,25 @@ export const SERVER = {
     url: 'https://cdn-us1.organicmaps.app/',
     dataVersions: [
       210529, 210703, 210729, 210825, 211002, 211022, 211122, 220103, 220204, 220314, 220415, 220515, 220613, 220718,
-      220816, 220912, 221029, 221119, 221216, 230121, 230210, 230227, 230329, 230503, 230602, 230710,
+      220816, 220912, 221029, 221119, 221216, 230121, 230210, 230227, 230329, 230503, 230602, 230710, 230814,
     ],
   },
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [230503, 230602, 230710],
+    dataVersions: [230602, 230710, 230814],
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [230503, 230602, 230710],
+    dataVersions: [230602, 230710, 230814],
   },
   planet: {
     // Hetzner BareMetal (Falkenstein, Germany) unmetered
     url: 'https://cdn.organicmaps.app/',
     dataVersions: [
       220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119, 221216, 230121, 230210,
-      230227, 230329, 230503, 230602, 230710,
+      230227, 230329, 230503, 230602, 230710, 230814,
     ],
   },
   beta: {
@@ -39,22 +39,22 @@ export const SERVER = {
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
-    dataVersions: [230602, 230710],
+    dataVersions: [230710, 230814],
   },
   de1: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-eu2.organicmaps.app/',
-    dataVersions: [230602, 230710],
+    dataVersions: [230710, 230814],
   },
   de2: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-de2.organicmaps.app/',
-    dataVersions: [230503, 230602, 230710],
+    dataVersions: [230602, 230710, 230814],
   },
   us2: {
     // Hetzner Cloud (Asburn, US East), 20TB/mo
     url: 'https://cdn-us2.organicmaps.app/',
-    dataVersions: [230602, 230710],
+    dataVersions: [230710, 230814],
   },
 };
 
@@ -122,7 +122,7 @@ export async function getServersList(request: Request) {
   };
 
   // Disable donates for reviewers for all app versions AFTER this one.
-  const lastApprovedAndReleasedGoogleAppVersionCode = 230713;
+  const lastApprovedAndReleasedGoogleAppVersionCode = 230818;
   const lastApprovedAndReleasediOSAppVersionCode = 230713;
   let donatesEnabled = true;
   if (
