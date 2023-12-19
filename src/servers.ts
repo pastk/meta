@@ -123,7 +123,7 @@ export async function getServersList(request: Request) {
   };
 
   // Disable donates for reviewers for all app versions AFTER this one.
-  const lastApprovedAndReleasedGoogleAppVersionCode = 231117;
+  const lastApprovedAndReleasedGoogleAppVersionCode = 231218;
   const lastApprovedAndReleasediOSAppVersionCode = 231213;
   let donatesEnabled = true;
   if (
@@ -149,12 +149,12 @@ export async function getServersList(request: Request) {
     if (request.cf?.country == 'RU') {
       response.settings = {
         DonateUrl: DONATE_URL_RU,
-        NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
+        NY: 'true', // Must be `string` instead of `bool`, otherwise clients will crash
       };
     } else {
       response.settings = {
         DonateUrl: DONATE_URL,
-        NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
+        NY: 'true', // Must be `string` instead of `bool`, otherwise clients will crash
       };
     }
   }
