@@ -61,7 +61,7 @@ export const SERVER = {
 
 // Exported for tests.
 export const DONATE_URL = 'https://organicmaps.app/donate/';
-export const DONATE_URL_RU = 'https://organicmaps.app/ru/donate/';
+export const DONATE_URL_RU = 'https://donate.organicmaps.ru/';
 
 export async function getServersList(request: Request) {
   // Private for map files.
