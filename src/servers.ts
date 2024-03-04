@@ -9,25 +9,25 @@ export const SERVER = {
     dataVersions: [
       210529, 210703, 210729, 210825, 211002, 211022, 211122, 220103, 220204, 220314, 220415, 220515, 220613, 220718,
       220816, 220912, 221029, 221119, 221216, 230121, 230210, 230227, 230329, 230503, 230602, 230710, 230814, 230920,
-      231113, 231213, 240105, 240202,
+      231113, 231213, 240105, 240202, 240228,
     ],
   },
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [231213, 240105, 240202],
+    dataVersions: [240105, 240202, 240228],
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [231213, 240105, 240202],
+    dataVersions: [240105, 240202, 240228],
   },
   planet: {
     // Hetzner BareMetal (Falkenstein, Germany) unmetered
     url: 'https://cdn.organicmaps.app/',
     dataVersions: [
       220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119, 221216, 230121, 230210,
-      230227, 230329, 230503, 230602, 230710, 230814, 230920, 231113, 231213, 240105, 240202,
+      230227, 230329, 230503, 230602, 230710, 230814, 230920, 231113, 231213, 240105, 240202, 240228,
     ],
   },
   beta: {
@@ -40,22 +40,22 @@ export const SERVER = {
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
-    dataVersions: [240105, 240202],
+    dataVersions: [240202, 240228],
   },
   de1: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-eu2.organicmaps.app/',
-    dataVersions: [240105, 240202],
+    dataVersions: [240202, 240228],
   },
   de2: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-de2.organicmaps.app/',
-    dataVersions: [231213, 240105, 240202],
+    dataVersions: [240105, 240202, 240228],
   },
   us2: {
     // Hetzner Cloud (Asburn, US East), 20TB/mo
     url: 'https://cdn-us2.organicmaps.app/',
-    dataVersions: [240105, 240202],
+    dataVersions: [240202, 240228],
   },
 };
 
