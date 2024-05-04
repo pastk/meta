@@ -30,14 +30,6 @@ export const SERVER = {
       230227, 230329, 230503, 230602, 230710, 230814, 230920, 231113, 231213, 240105, 240202, 240228, 240326,
     ],
   },
-  gcdn: {
-    // G-Core CDN.
-    url: 'https://gcdn.organicmaps.app/',
-    dataVersions: [
-      220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119, 221216, 230121, 230210,
-      230227, 230329, 230503, 230602, 230710, 230814, 230920, 231113, 231213, 240105, 240202, 240228, 240326,
-    ],
-  },
   beta: {
     // Alias of the planet above that is proxied via CF and with enabled /maps/ *.mwm caching,
     // to speed-up downloads for beta testers.
@@ -89,7 +81,7 @@ export async function getServersList(request: Request) {
       case 'NA': // North America
       case 'SA': // South America
       case 'OC': // Oceania
-        servers = [SERVER.gcdn, SERVER.backblaze, SERVER.us2, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
+        servers = [SERVER.backblaze, SERVER.us2, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
           server.dataVersions.includes(dataVersion),
         );
         break;
