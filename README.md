@@ -12,9 +12,7 @@ npm i
 
 ## Development
 
-Use `npx wrangler dev --local` for localhost development.
-
-Use `npx wrangler dev` to test local changes using Cloudflare dev tools.
+Use `npx wrangler dev` for localhost development and for testing using Cloudflare dev tools.
 
 ## Update node dependencies to their major versions
 
