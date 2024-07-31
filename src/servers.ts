@@ -53,6 +53,11 @@ export const SERVER = {
     url: 'https://cdn-de2.organicmaps.app/',
     dataVersions: [240613, 240702, 240723],
   },
+  de3: {
+    // Hetzner Cloud (Nuremberg, Germany), 20TB/mo
+    url: 'https://cdn-de3.organicmaps.app/',
+    dataVersions: [240528, 240613, 240702, 240723],
+  },
   us2: {
     // Hetzner Cloud (Asburn, US East), 20TB/mo
     url: 'https://cdn-us2.organicmaps.app/',
@@ -88,8 +93,8 @@ export async function getServersList(request: Request) {
         break;
       default:
         // Every other continent + Tor networks.
-        servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1, SERVER.de2].filter((server) =>
-          server.dataVersions.includes(dataVersion),
+        servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1, SERVER.de2, SERVER.de3].filter(
+          (server) => server.dataVersions.includes(dataVersion),
         );
         // Only fallback to the archive in the US if nothing was found closer.
         if (servers.length == 0 && SERVER.backblaze.dataVersions.includes(dataVersion)) {
