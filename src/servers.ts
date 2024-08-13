@@ -67,7 +67,6 @@ export const SERVER = {
 
 // Exported for tests.
 export const DONATE_URL = 'https://organicmaps.app/donate/';
-export const DONATE_URL_RU = 'https://donate.organicmaps.ru/';
 
 export async function getServersList(request: Request) {
   // Private for map files.
@@ -152,17 +151,10 @@ export async function getServersList(request: Request) {
   if (donatesEnabled) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore workarounds error TS2339: Property 'country' does not exist on type 'IncomingRequestCfProperties<unknown>'.
-    if (request.cf?.country == 'RU') {
-      response.settings = {
-        DonateUrl: DONATE_URL_RU,
-        NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
-      };
-    } else {
-      response.settings = {
-        DonateUrl: DONATE_URL,
-        NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
-      };
-    }
+    response.settings = {
+      DonateUrl: DONATE_URL,
+      NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
+    };
   }
 
   return new Response(JSON.stringify(response), {
