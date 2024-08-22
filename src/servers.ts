@@ -58,9 +58,9 @@ export const SERVER = {
     url: 'https://cdn-de3.organicmaps.app/',
     dataVersions: [240613, 240702, 240723, 240810],
   },
-  us2: {
-    // Hetzner Cloud (Asburn, US East), 20TB/mo
-    url: 'https://cdn-us2.organicmaps.app/',
+  us3: {
+    // Hetzner Cloud (Hillsdate, US West), 20TB/mo
+    url: 'https://cdn-us3.organicmaps.app/',
     dataVersions: [240723, 240810],
   },
 };
@@ -86,7 +86,7 @@ export async function getServersList(request: Request) {
       case 'NA': // North America
       case 'SA': // South America
       case 'OC': // Oceania
-        servers = [SERVER.backblaze, SERVER.us2, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
+        servers = [SERVER.backblaze, SERVER.us3, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
           server.dataVersions.includes(dataVersion),
         );
         break;
