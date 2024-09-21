@@ -24,9 +24,9 @@ jobs:
       - name: Dependencies
         run: npm ci
 
-# TODO(AB): ESLint dependencies are broken. Replace with a better and less complex linter.
-#      - name: Lint
-#        run: npm run lint:ci
+      # TODO(AB): ESLint dependencies are broken. Replace with a better and less complex linter.
+      #      - name: Lint
+      #        run: npm run lint:ci
 
       - name: Format
         run: npm run format:ci
