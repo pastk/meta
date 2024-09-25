@@ -130,8 +130,8 @@ export async function getServersList(request: Request) {
       case 'NA': // North America
       case 'SA': // South America
       case 'OC': // Oceania
-        servers = [SERVER.backblaze, SERVER.us_east1, SERVER.us_west1, SERVER.uk1, SERVER.nl1, SERVER.planet].filter(
-          (server) => DATA_VERSIONS.slice(-server.dataVersions).includes(dataVersion),
+        servers = [SERVER.us_east1, SERVER.us_west1, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
+          DATA_VERSIONS.slice(-server.dataVersions).includes(dataVersion),
         );
         break;
       default:
