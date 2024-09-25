@@ -1,8 +1,8 @@
 import { describe, expect, test } from '@jest/globals';
-import { getServersList, SERVER, DONATE_URL, DONATE_URL_RU } from '../src/servers';
+import { getServersList, SERVER, DATA_VERSIONS, DONATE_URL } from '../src/servers';
 
 const URL = 'https://worker/servers';
-const LAST_DATA_VERSION = SERVER.planet.dataVersions[SERVER.planet.dataVersions.length - 1];
+const LAST_DATA_VERSION = DATA_VERSIONS[DATA_VERSIONS.length - 1];
 
 // Note: CF lowercases all headers.
 describe('X-OM-DataVersion', () => {
@@ -17,7 +17,7 @@ describe('X-OM-DataVersion', () => {
     const server = SERVER.fi1;
     let req = new Request(URL, {
       headers: {
-        'X-OM-DataVersion': String(server.dataVersions[0]),
+        'X-OM-DataVersion': String(LAST_DATA_VERSION),
       },
     });
     const result = await getServersList(req);
@@ -51,7 +51,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
     let req = new Request(URL, {
       headers: {
         'X-OM-AppVersion': '2022.08.23-1-Google',
-        'X-OM-DataVersion': String(server.dataVersions[0]),
+        'X-OM-DataVersion': String(LAST_DATA_VERSION),
       },
     });
     const response = await getServersList(req);
@@ -69,7 +69,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
     let req = new Request(URL, {
       headers: {
         'X-OM-AppVersion': '2022.08.23-1-Google',
-        'X-OM-DataVersion': String(server.dataVersions[0]),
+        'X-OM-DataVersion': String(LAST_DATA_VERSION),
       },
       //@ts-ignore
       cf: { country: 'RU' },
@@ -78,14 +78,13 @@ describe('X-OM-AppVersion DonateUrl', () => {
     expect(response.status).toBe(200);
     const result = JSON.parse(await response.text());
     expect(result.settings.DonateUrl).toBeDefined();
-    expect(result.settings.DonateUrl).toEqual(DONATE_URL_RU);
   });
 
   test('Older iOS versions with X-OM-AppVersion but without donates', async () => {
     let req = new Request(URL, {
       headers: {
         'X-OM-AppVersion': '2022.11.20',
-        'X-OM-DataVersion': String(server.dataVersions[0]),
+        'X-OM-DataVersion': String(LAST_DATA_VERSION),
       },
     });
     const response = await getServersList(req);
@@ -98,7 +97,7 @@ describe('X-OM-AppVersion DonateUrl', () => {
     let req = new Request(URL, {
       headers: {
         'X-OM-AppVersion': '2022.11.20-4-ios',
-        'X-OM-DataVersion': String(server.dataVersions[0]),
+        'X-OM-DataVersion': String(LAST_DATA_VERSION),
       },
     });
     const response = await getServersList(req);

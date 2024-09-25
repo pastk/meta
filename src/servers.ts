@@ -1,35 +1,73 @@
 import { parseDataVersion, parseAppVersion } from './versions';
 
+export const DATA_VERSIONS = [
+  210529, //
+  210703,
+  210729,
+  210825,
+  211002,
+  211022,
+  211122,
+  220103,
+  220204,
+  220314,
+  220415,
+  220515,
+  220613,
+  220718,
+  220816,
+  220912,
+  221029,
+  221119,
+  221216,
+  230121,
+  230210,
+  230227,
+  230329,
+  230503,
+  230602,
+  230710,
+  230814,
+  230920,
+  231113,
+  231213,
+  240105,
+  240202,
+  240228,
+  240326,
+  240429,
+  240528,
+  240613,
+  240702,
+  240723,
+  240810,
+  240904,
+];
+
+const kUnlimited = 99999;
+
 // TODO: Implement automated version checks from this metaserver script.
 // It should check by cron if actual files are really available on all servers.
 export const SERVER = {
   backblaze: {
     // BackBlaze + CloudFlare (US-West) unmetered.
     url: 'https://cdn-us1.organicmaps.app/',
-    dataVersions: [
-      210529, 210703, 210729, 210825, 211002, 211022, 211122, 220103, 220204, 220314, 220415, 220515, 220613, 220718,
-      220816, 220912, 221029, 221119, 221216, 230121, 230210, 230227, 230329, 230503, 230602, 230710, 230814, 230920,
-      231113, 231213, 240105, 240202, 240228, 240326, 240429, 240528, 240613, 240702, 240723, 240810, 240904,
-    ],
+    dataVersions: kUnlimited,
   },
   uk1: {
     // Mythic Beasts VPS (London, UK) 200TB/mo.
     url: 'https://cdn-uk1.organicmaps.app/',
-    dataVersions: [240723, 240810, 240904],
+    dataVersions: 3,
   },
   nl1: {
     // // Mythic Beasts VPS (Amsterdam, NL) 200TB/mo.
     url: 'https://cdn-nl1.organicmaps.app/',
-    dataVersions: [240723, 240810, 240904],
+    dataVersions: 3,
   },
   planet: {
-    // Hetzner BareMetal (Falkenstein, Germany) unmetered
+    // Hetzner BareMetal (Helsinki, Finland) unmetered
     url: 'https://cdn.organicmaps.app/',
-    dataVersions: [
-      220103, 220204, 220314, 220415, 220515, 220613, 220718, 220816, 220912, 221029, 221119, 221216, 230121, 230210,
-      230227, 230329, 230503, 230602, 230710, 230814, 230920, 231113, 231213, 240105, 240202, 240228, 240326, 240429,
-      240528, 240613, 240702, 240723, 240810, 240904,
-    ],
+    dataVersions: kUnlimited,
   },
   beta: {
     // Alias of the planet above that is proxied via CF and with enabled /maps/ *.mwm caching,
@@ -41,27 +79,32 @@ export const SERVER = {
   fi1: {
     // Hetzner Cloud (Helsinki, Finland), 20TB/mo
     url: 'https://cdn-fi1.organicmaps.app/',
-    dataVersions: [240810, 240904],
+    dataVersions: 2,
   },
   de1: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-eu2.organicmaps.app/',
-    dataVersions: [240810, 240904],
+    dataVersions: 2,
   },
   de2: {
     // Hetzner Cloud (Falkenstein, Germany), 20TB/mo
     url: 'https://cdn-de2.organicmaps.app/',
-    dataVersions: [240723, 240810, 240904],
+    dataVersions: 3,
   },
   de3: {
     // Hetzner Cloud (Nuremberg, Germany), 20TB/mo
     url: 'https://cdn-de3.organicmaps.app/',
-    dataVersions: [240702, 240723, 240810, 240904],
+    dataVersions: 4,
   },
-  us3: {
+  us_east1: {
+    // Hetzner Cloud (Ashburn, US East), 20TB/mo
+    url: 'https://cdn-us-east1.organicmaps.app/',
+    dataVersions: 3,
+  },
+  us_west1: {
     // Hetzner Cloud (Hillsdate, US West), 20TB/mo
-    url: 'https://cdn-us3.organicmaps.app/',
-    dataVersions: [240810, 240904],
+    url: 'https://cdn-us-west1.organicmaps.app/',
+    dataVersions: 2,
   },
 };
 
@@ -86,17 +129,17 @@ export async function getServersList(request: Request) {
       case 'NA': // North America
       case 'SA': // South America
       case 'OC': // Oceania
-        servers = [SERVER.backblaze, SERVER.us3, SERVER.uk1, SERVER.nl1, SERVER.planet].filter((server) =>
-          server.dataVersions.includes(dataVersion),
+        servers = [SERVER.backblaze, SERVER.us_east1, SERVER.us_west1, SERVER.uk1, SERVER.nl1, SERVER.planet].filter(
+          (server) => DATA_VERSIONS.slice(-server.dataVersions).includes(dataVersion),
         );
         break;
       default:
         // Every other continent + Tor networks.
         servers = [SERVER.planet, SERVER.uk1, SERVER.nl1, SERVER.fi1, SERVER.de1, SERVER.de2, SERVER.de3].filter(
-          (server) => server.dataVersions.includes(dataVersion),
+          (server) => DATA_VERSIONS.slice(-server.dataVersions).includes(dataVersion),
         );
         // Only fallback to the archive in the US if nothing was found closer.
-        if (servers.length == 0 && SERVER.backblaze.dataVersions.includes(dataVersion)) {
+        if (servers.length == 0 && DATA_VERSIONS.slice(-SERVER.backblaze.dataVersions).includes(dataVersion)) {
           servers = [SERVER.backblaze];
         }
     }
