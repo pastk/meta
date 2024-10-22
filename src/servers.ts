@@ -1,4 +1,5 @@
 import { parseDataVersion, parseAppVersion } from './versions';
+import { getProducts, ProductsConfig } from './products';
 
 export const DATA_VERSIONS = [
   210529, //
@@ -125,7 +126,7 @@ export async function getServersList(request: Request) {
   if (dataVersion === null) {
     // Older clients download from the archive.
     servers = [SERVER.backblaze];
-  } else if (dataVersion == 240702 && abusedVersions.includes(request.headers.get('x-om-appversion'))) {
+  } else if (dataVersion == 240702 && abusedVersions.includes(request.headers.get('x-om-appversion') || 'unknown')) {
     // Redirect https://apps.apple.com/us/app/mapxplorer-navigation-radar/id6463052823
     // who abuses our servers to a slow download "trap" node.
     return new Response('["https://cdn-fi2.organicmaps.app/"]', {
@@ -176,6 +177,7 @@ export async function getServersList(request: Request) {
       DonateUrl?: string;
       NY?: string;
     };
+    productsConfig?: ProductsConfig;
   } = {
     servers: servers,
   };
@@ -203,11 +205,14 @@ export async function getServersList(request: Request) {
 
   if (donatesEnabled) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore workarounds error TS2339: Property 'country' does not exist on type 'IncomingRequestCfProperties<unknown>'.
     response.settings = {
       DonateUrl: DONATE_URL,
       NY: 'false', // Must be `string` instead of `bool`, otherwise clients will crash
     };
+    if (appVersion.code >= 241022) {
+      const locale = request.headers.get('accept-language');
+      response.productsConfig = getProducts(locale);
+    }
   }
 
   return new Response(JSON.stringify(response), {

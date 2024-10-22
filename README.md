@@ -14,6 +14,10 @@ npm i
 
 Use `npx wrangler dev` for localhost development and for testing using Cloudflare dev tools.
 
+```
+curl -H "X-OM-DataVersion: 241001" -H "X-OM-AppVersion: 2024.10.22-10-Google" -H 'Accept-Language: fr-FR' http://localhost:8787/maps
+```
+
 ## Update node dependencies to their major versions
 
 ```bash

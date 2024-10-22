@@ -1,0 +1,44 @@
+{
+  "en": {
+    "placePagePrompt": "Organic Maps app is free for everyone, thanks to your donations. No ads. No trackers. Open source.",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "otherAmount": "Other"
+  },
+  "de": {
+    "placePagePrompt": "Organic Maps ist dank deiner Spenden für alle kostenlos. Keine Werbung. Keine Tracker. Open Source.",
+    "perMonth": "/Monat",
+    "perYear": "/Jahr",
+    "otherAmount": "Andere"
+  },
+  "fr": {
+    "placePagePrompt": "L'application Organic Maps est gratuite pour tout le monde grâce à vos dons. Pas de publicité. Pas de trackers. Open-source.",
+    "perMonth": "/mois",
+    "perYear": "/an",
+    "otherAmount": "Autre"
+  },
+  "nl": {
+    "placePagePrompt": "De Organic Maps app is gratis voor iedereen dankzij jullie donaties. Geen advertenties. Geen trackers. Open-source.",
+    "perMonth": "/maand",
+    "perYear": "/jaar",
+    "otherAmount": "Ander"
+  },
+  "it": {
+    "placePagePrompt": "L'app Organic Maps è gratuita per tutti grazie alle vostre donazioni. Nessuna pubblicità. Nessun tracker. Open-source.",
+    "perMonth": "/mese",
+    "perYear": "/anno",
+    "otherAmount": "Altro"
+  },
+  "es": {
+    "placePagePrompt": "Organic Maps es gratis para todos gracias a sus donaciones. Sin anuncios. Sin rastreadores. Código abierto.",
+    "perMonth": "/mes",
+    "perYear": "/año",
+    "otherAmount": "Otro"
+  },
+  "pt": {
+    "placePagePrompt": "O app Organic Maps é gratuito para todos graças às suas doações. Sem anúncios. Sem rastreadores. Código aberto.",
+    "perMonth": "/mês",
+    "perYear": "/ano",
+    "otherAmount": "Outro"
+  }
+}

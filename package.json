@@ -7,8 +7,8 @@
   "scripts": {
     "build": "esbuild src/index.ts --bundle --outfile=dist/index.js",
     "test": "jest",
-    "format": "prettier --write '{src,test}/**/*.{ts,tsx}' '*.json' '*.toml' '.github/**/*.yml'",
-    "format:ci": "prettier --check '{src,test}/**/*.{ts,tsx}' '*.json' '*.toml' '.github/**/*.yml'",
+    "format": "prettier --write '{src,test}/**/*.{ts,tsx,json}' '*.json' '*.toml' '.github/**/*.yml'",
+    "format:ci": "prettier --check '{src,test}/**/*.{ts,tsx,json}' '*.json' '*.toml' '.github/**/*.yml'",
     "upgrade": "npx npm-check-updates -u && npm install",
     "logs": "npx wrangler tail --env prod --format json"
   },
