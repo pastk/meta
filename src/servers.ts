@@ -122,6 +122,12 @@ export async function getServersList(request: Request) {
   if (dataVersion === null) {
     // Older clients download from the archive.
     servers = [SERVER.backblaze];
+  } else if (dataVersion == 240702 && request.headers.get('x-om-appversion') == '1.8.6-4-ios') {
+    // Redirect https://apps.apple.com/us/app/mapxplorer-navigation-radar/id6463052823
+    // who abuses our servers to a slow download "trap" node.
+    return new Response('["https://cdn-fi2.organicmaps.app/"]', {
+      headers: { 'Content-Type': 'application/json' },
+    });
   } else {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore workarounds error TS2339: Property 'continent' does not exist on type 'IncomingRequestCfProperties<unknown>'.
