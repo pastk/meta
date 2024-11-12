@@ -119,7 +119,7 @@ export async function getServersList(request: Request) {
   // of their current maps data version, for example, "211022" (October 22, 2021).
   // It is lowercased by Cloudflare.
   const dataVersion = parseDataVersion(request.headers.get('x-om-dataversion'));
-  const abusedVersions = ['1.8.6-4-ios', '1.8.8-1-ios'];
+  const abusedVersions = ['1.8.6-4-ios', '1.8.7-1-ios', '1.8.8-1-ios'];
   if (dataVersion === null) {
     // Older clients download from the archive.
     servers = [SERVER.backblaze];
