@@ -119,10 +119,11 @@ export async function getServersList(request: Request) {
   // of their current maps data version, for example, "211022" (October 22, 2021).
   // It is lowercased by Cloudflare.
   const dataVersion = parseDataVersion(request.headers.get('x-om-dataversion'));
+  const abusedVersions = ['1.8.6-4-ios', '1.8.8-1-ios'];
   if (dataVersion === null) {
     // Older clients download from the archive.
     servers = [SERVER.backblaze];
-  } else if (dataVersion == 240702 && request.headers.get('x-om-appversion') == '1.8.6-4-ios') {
+  } else if (dataVersion == 240702 && abusedVersions.includes(request.headers.get('x-om-appversion'))) {
     // Redirect https://apps.apple.com/us/app/mapxplorer-navigation-radar/id6463052823
     // who abuses our servers to a slow download "trap" node.
     return new Response('["https://cdn-fi2.organicmaps.app/"]', {
