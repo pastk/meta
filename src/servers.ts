@@ -46,6 +46,7 @@ export const DATA_VERSIONS = [
   241001,
   241017,
   241107,
+  241122,
 ];
 
 const kUnlimited = 99999;
@@ -183,8 +184,8 @@ export async function getServersList(request: Request) {
   };
 
   // Disable donates for reviewers for all app versions AFTER this one.
-  const lastApprovedAndReleasedGoogleAppVersionCode = 241112;
-  const lastApprovedAndReleasediOSAppVersionCode = 241112;
+  const lastApprovedAndReleasedGoogleAppVersionCode = 241127;
+  const lastApprovedAndReleasediOSAppVersionCode = 241127;
   let donatesEnabled = true;
   if (
     appVersion.flavor === 'google' &&
