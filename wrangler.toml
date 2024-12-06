@@ -23,6 +23,3 @@ route = 'meta.omaps.app/*'
 
 [env.prod.vars]
 DEBUG = false
-
-[observability.logs]
-enabled = true
